@@ -1,4 +1,4 @@
-const carousel_box = document.querySelector('#carousel');
+const carousel_box = document.querySelector('.carousel_inner > .carousel');
 
 const up = document.querySelector('.up');
 const down = document.querySelector('.down');
@@ -15,37 +15,35 @@ down.addEventListener('click', function () {
 // 여기서 부터 코드
 
 // 옮길 element, 방향(위 아래), 이동 시간
-export function carousel(element, dir, move_time) {
+function carousel(element, dir, move_time) {
 
     let isMoving = element.dataset.isMoving;
     let move_count = element.dataset.move_count;
 
-    if (isMoving === undefined || isMoving === 'false') {
-        isMoving = false;
-    }
+    // 현재 움직이고 있는지 체크한다.
+    isMoving = (isMoving === undefined || isMoving === 'false') ? false : true;
 
-    if (move_count === undefined) {
-        move_count = 0;
-        element.dataset.move_count = move_count;
-    }
-
-    else {
-        move_count = parseInt(element.dataset.move_count);
-    }
+    // 몇번 움직였는지 체크한다.
+    move_count = (move_count === undefined) ? 0 : parseInt(element.dataset.move_count);
+    element.dataset.move_count = move_count;
 
 
-
+    // 움직이고 있는 상태라면 실행하지 않는다.
     if (isMoving) return;
 
     // 방향에 따라 곱할값
     let mius = 0;
+
     isMoving = true;
     element.dataset.isMoving = isMoving;
+    element.style.position = 'relative';
 
+    // 이동 시킬 높이 추출
     let height = getComputedStyle(element.firstElementChild).height;
     height = parseInt(height);
 
-    element.style.transition = `all ${move_time}s`;
+    // transition 설정
+    element.style.transition = `all ${move_time}s ease-in-out`;
 
     // 내려가는거 마지막이고 버튼 눌렀을때
     if (move_count == element.children.length - 1 && dir === 'up') {
@@ -53,14 +51,15 @@ export function carousel(element, dir, move_time) {
         const first = element.firstElementChild.cloneNode(true);
         element.appendChild(first);
 
-        first.style.position = 'absolute';
-        first.style.bottom = `${-height}px`;
-        first.style.left = '50%';
-        first.style.transform = 'translate(-50%, 0)';
-        first.style.width = '100%';
+        // 임시 추가 노드 설정
+        first.style.cssText =
+            `position: absolute; 
+            bottom: ${-height}px; 
+            left: 50%; 
+            transform: translate(-50%, 0);
+            width: 100%`;
 
-
-        // 초기화 시간 , 나중에 정하기
+        // 초기화 옵션
         setTimeout(() => {
             move_count = 0;
             element.dataset.move_count = move_count;
@@ -78,13 +77,15 @@ export function carousel(element, dir, move_time) {
         const last = element.lastElementChild.cloneNode(true);
         element.prepend(last);
 
-        last.style.position = 'absolute';
-        last.style.top = `${-height}px`;
-        last.style.left = '50%';
-        last.style.transform = 'translate(-50%, 0)';
-        last.style.width = '100%';
+        // 임시 추가 노드 설정
+        last.style.cssText =
+            `position: absolute; 
+            top: ${-height}px; 
+            left: 50%; 
+            transform: translate(-50%, 0);
+            width: 100%`;
 
-        // 초기화 시간 , 나중에 정하기
+        // 초기화 옵션
         setTimeout(() => {
             move_count = element.children.length - 2;
             element.dataset.move_count = move_count;
@@ -108,15 +109,18 @@ export function carousel(element, dir, move_time) {
         mius = 1;
     }
 
+    // 움직임 끝 알림
     setTimeout(() => {
         isMoving = false;
         element.dataset.isMoving = isMoving;
     }, (move_time * 1000))
 
+    // 움직임 시작
     let loc = now_location(element);
     element.style.transform = `translate(0,${loc + (height * mius)}px)`;
 
 }
+
 
 // 현재 위치값 추출
 function now_location(element) {
