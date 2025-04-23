@@ -1,5 +1,3 @@
-/* 공용 */
-
 // 현재 위치값 추출
 function now_location(element) {
 
