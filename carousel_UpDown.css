@@ -1,9 +1,11 @@
 /* 상하 부분 */
 .carousel_inner {
 
-    /* 크기랑 높이 조절 */
-    --height: 62px;
+    /* 길이 조절 변수 */
     width: 600px;
+    /* 높이 조절 변수 */
+    --height: 62px;
+
 
     height: var(--height);
 

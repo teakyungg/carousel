@@ -1,16 +1,3 @@
-// 현재 위치값 추출
-function now_location(element) {
-
-    element = getComputedStyle(element).transform;
-    let loc = element.split(',')[5];
-
-    if (loc === undefined) { loc = 0; }
-    else { loc = parseInt(loc); }
-
-    return loc;
-}
-
-
 /* 상하 이동 */
 const carousel_box = document.querySelector('.carousel_inner > .carousel_UpDown');
 const up = document.querySelector('.up');
@@ -130,6 +117,18 @@ function carousel_UpDown(element, dir, move_time) {
     let loc = now_location(element);
     element.style.transform = `translate(0,${loc + (height * mius)}px)`;
 
+}
+
+// 현재 위치값 추출
+function now_location(element) {
+
+    element = getComputedStyle(element).transform;
+    let loc = element.split(',')[5];
+
+    if (loc === undefined) { loc = 0; }
+    else { loc = parseInt(loc); }
+
+    return loc;
 }
 
 
