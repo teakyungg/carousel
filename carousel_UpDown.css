@@ -1,0 +1,42 @@
+/* 상하 부분 */
+.carousel_inner {
+
+    /* 크기랑 높이 조절 */
+    --height: 62px;
+    width: 600px;
+
+    height: var(--height);
+
+    background-color: rgb(51, 51, 51);
+
+    color: white;
+    overflow: hidden;
+
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+
+    display: flex;
+    gap: 20px;
+}
+
+.carousel_inner>h2 {
+    padding-left: 20px;
+}
+
+.carousel_inner>.carousel_UpDown {
+    width: 100%;
+    align-self: flex-start;
+    text-align: center;
+}
+
+.carousel_UpDown>.item {
+    height: var(--height);
+    margin: 0;
+    padding: 21px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

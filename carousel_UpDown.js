@@ -1,21 +1,33 @@
-const carousel_box = document.querySelector('.carousel_inner > .carousel');
+/* 공용 */
 
+// 현재 위치값 추출
+function now_location(element) {
+
+    element = getComputedStyle(element).transform;
+    let loc = element.split(',')[5];
+
+    if (loc === undefined) { loc = 0; }
+    else { loc = parseInt(loc); }
+
+    return loc;
+}
+
+
+/* 상하 이동 */
+const carousel_box = document.querySelector('.carousel_inner > .carousel_UpDown');
 const up = document.querySelector('.up');
 const down = document.querySelector('.down');
 
 up.addEventListener('click', function () {
-    carousel(carousel_box, 'up', 1);
+    carousel_UpDown(carousel_box, 'up', 1);
 })
 
 down.addEventListener('click', function () {
-    carousel(carousel_box, 'down', 1);
+    carousel_UpDown(carousel_box, 'down', 1);
 })
 
-
-// 여기서 부터 코드
-
 // 옮길 element, 방향(위 아래), 이동 시간
-function carousel(element, dir, move_time) {
+function carousel_UpDown(element, dir, move_time) {
 
     let isMoving = element.dataset.isMoving;
     let move_count = element.dataset.move_count;
@@ -99,15 +111,16 @@ function carousel(element, dir, move_time) {
 
     if (dir === 'up') {
         move_count++;
-        element.dataset.move_count = move_count;
         mius = -1;
     }
 
     else if (dir === 'down') {
         move_count--;
-        element.dataset.move_count = move_count;
         mius = 1;
     }
+
+    element.dataset.move_count = move_count;
+
 
     // 움직임 끝 알림
     setTimeout(() => {
@@ -122,15 +135,5 @@ function carousel(element, dir, move_time) {
 }
 
 
-// 현재 위치값 추출
-function now_location(element) {
 
-    element = getComputedStyle(element).transform;
-    let loc = element.split(',')[5];
-
-    if (loc === undefined) { loc = 0; }
-    else { loc = parseInt(loc); }
-
-    return loc;
-}
 
