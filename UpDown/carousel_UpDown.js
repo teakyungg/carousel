@@ -1,5 +1,5 @@
 /* 상하 이동 */
-const carousel_box = document.querySelector('.carousel_inner > .carousel_UpDown');
+const carousel_box = document.querySelector('.carousel_inner_1 > .carousel_UpDown');
 const up = document.querySelector('.up');
 const down = document.querySelector('.down');
 
