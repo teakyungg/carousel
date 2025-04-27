@@ -4,16 +4,16 @@ const right = document.querySelector('.right');
 const left = document.querySelector('.left');
 
 right.addEventListener('click', function () {
-    carousel_UpDown(carousel_box, 'right', 1);
+    carousel_RightLeft(carousel_box, 'right', 1);
 })
 
 left.addEventListener('click', function () {
-    carousel_UpDown(carousel_box, 'left', 1);
+    carousel_RightLeft(carousel_box, 'left', 1);
 })
 
 
 // 옮길 element, 방향(좌,우), 이동 시간
-function carousel_UpDown(element, dir, move_time) {
+function carousel_RightLeft(element, dir, move_time) {
 
     let isMoving = element.dataset.isMoving;
     let move_count = element.dataset.move_count;

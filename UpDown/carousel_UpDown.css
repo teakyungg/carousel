@@ -22,10 +22,6 @@
     gap: 20px;
 }
 
-.carousel_inner_1>h2 {
-    padding-left: 20px;
-}
-
 .carousel_inner_1>.carousel_UpDown {
     width: 100%;
     align-self: flex-start;

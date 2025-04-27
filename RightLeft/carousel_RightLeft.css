@@ -13,12 +13,6 @@
     overflow: hidden;
 }
 
-.carousel_inner_2>h2 {
-    padding: 20px;
-    margin: 0;
-    text-align: center;
-}
-
 .carousel_inner_2>.carousel_RightLeft {
     display: flex;
     flex: 1;
